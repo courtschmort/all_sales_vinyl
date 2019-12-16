@@ -36,7 +36,20 @@ post('/albums') do
   @albums = Album.all() # Adding this line will fix the error.
   erb(:albums)
 end
-
+get('/albums/:id') do
+  @album = Album.find(params[:id].to_i())
+  erb(:album)
+end
+get('/albums/:id/edit') do
+  @album = Album.find(params[:id].to_i())
+  erb(:edit_album)
+end
+patch('/albums/:id') do
+  @album = Album.find(params[:id].to_i())
+  @album.update(params[:name])
+  @albums = Album.all
+  erb(:albums)
+end
 #
 # get('/albums') do
 #   "This route will show a list of all albums."
