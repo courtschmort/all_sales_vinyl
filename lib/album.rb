@@ -4,9 +4,6 @@ class Album
   attr_accessor :name
   @@albums = {}
   @@total_rows = 0
-  # @@name = []
-  # @@year = []
-  # @@artist = []
 
   def initialize(name, id)
     @name = name
@@ -15,9 +12,7 @@ class Album
 
   def self.all()
     @@albums.values()
-    # @@name
-    # @@year
-    # @@artist
+
   end
 
   def save
@@ -46,44 +41,4 @@ class Album
     @@albums.delete(self.id)
   end
 
-  # def self.find(name)
-  # end
-  #
-  # def name
-  #   @name = name
-  # end
-  #
-  # def year
-  #   @year = year
-  # end
-  #
-  # def artist
-  #   @artist = artist
-  # end
-
-
-#   def ==(other_album)
-#   self.name.eql?(other_album.name) && self.artist.eql?(other_album.artist) && self.year.eql?(other_album.year)
-# end
 end
-
-
-
-
-
-
-
-# before(:each) do
-#   @album = Album.new()
-# end
-
-
-
-
-
-
-#
-# all(): returns all albums;
-# find(): finds an album by its name;
-# find_by_ranking(): finds an album by its ranking (if we were to add a rank attribute to our class);
-# top_rated(): finds the top-rated album.
