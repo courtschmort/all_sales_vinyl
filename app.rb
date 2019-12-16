@@ -13,17 +13,16 @@ also_reload('lib/**/*.rb')
 #   @albums = Album.all
 #   erb(:albums)
 # end
+
 get('/') do
-  "This will be our home page. '/' is always the root route in a Sinatra application."
-end
-get('/test') do
   @albums = Album.all
   erb(:albums)
 end
 
 get('/albums') do
+  binding.pry
   @albums = Album.all
-  erb(:albums)
+  # erb(:albums)
 end
 get('/albums/new') do
   erb(:new_album)
