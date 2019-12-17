@@ -55,6 +55,15 @@ describe('.find') do
     expect(Album.find(album.id)).to(eq(album))
   end
 end
+describe('.search_name') do
+  it("finds an album by name") do
+    album = Album.new("Giant Steps", nil)
+    album.save()
+    album2 = Album.new("Blue", nil)
+    album2.save()
+    expect(Album.search_name(album.name)).to(eq([album]))
+  end
+end
 
 describe('#update') do
   it("updates an album by id") do
@@ -74,6 +83,7 @@ describe('#delete') do
     album.delete()
     expect(Album.all).to(eq([album2]))
   end
+
 end
 end
 end

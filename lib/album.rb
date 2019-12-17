@@ -12,7 +12,6 @@ class Album
 
   def self.all()
     @@albums.values()
-
   end
 
   def save
@@ -30,6 +29,10 @@ class Album
 
   def self.find(id)
   @@albums[id]
+  end
+
+  def self.search_name(name)
+   @@albums.values().select { |album| /#{name}/i.match? album.name }
   end
 
   def update(name)
