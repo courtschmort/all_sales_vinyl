@@ -18,6 +18,10 @@ class Album
   @@albums[self.id] = Album.new(self.name, self.id)
   end
 
+  def self.sort
+    @@albums.values().sort { |a, b| a.name <=> b.name}
+  end
+
   def ==(album_to_compare)
     self.name() == album_to_compare.name()
   end
