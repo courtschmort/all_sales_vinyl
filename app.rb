@@ -11,9 +11,13 @@ end
 
 get('/albums') do
   # binding.pry
-  @albums = Album.all
+  if params["search"]
+  @albums = Album.search_name(params[:search])
+else  @albums = Album.all
+end
   erb(:albums)
 end
+
 get('/albums/new') do
   erb(:new_album)
 end
