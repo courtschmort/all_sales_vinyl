@@ -11,15 +11,11 @@ class Album
   end
 
   def self.all()
-    @@albums.values()
+    @@albums.values().sort { |a, b| a.name <=> b.name}
   end
 
   def save
-  @@albums[self.id] = Album.new(self.name, self.id)
-  end
-
-  def self.sort
-    @@albums.values().sort { |a, b| a.name <=> b.name}
+    @@albums[self.id] = Album.new(self.name, self.id)
   end
 
   def ==(album_to_compare)
@@ -32,11 +28,11 @@ class Album
   end
 
   def self.find(id)
-  @@albums[id]
+    @@albums[id]
   end
 
   def self.search_name(name)
-   @@albums.values().select { |album| /#{name}/i.match? album.name }
+    @@albums.values().select { |album| /#{name}/i.match? album.name }
   end
 
   def update(name)

@@ -5,16 +5,17 @@ require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
-  @albums = Album.all
+  @albums = Album.sort
+
   erb(:albums)
 end
 
 get('/albums') do
-  # binding.pry
   if params["search"]
-  @albums = Album.search_name(params[:search])
-else  @albums = Album.all
-end
+    @albums = Album.search_name(params[:search])
+  else  
+    @albums = Album.sort
+  end
   erb(:albums)
 end
 
