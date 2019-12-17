@@ -1,17 +1,18 @@
 
 class Album
-  attr_reader :id, :name
-  attr_accessor :name
+  attr_accessor :name, :id, :name, :status
   @@albums = {}
   @@total_rows = 0
+  @@sold_albums = {}
 
   def initialize(name, id)
     @name = name
     @id = id || @@total_rows += 1
+    @status = true
   end
 
   def self.all()
-    @@albums.values().sort { |a, b| a.name <=> b.name}
+    @@albums.values().sort { |a, b| a.name.downcase <=> b.name.downcase}
   end
 
   def save
@@ -44,4 +45,8 @@ class Album
     @@albums.delete(self.id)
   end
 
-end
+  def sold()
+    self.status = false
+    @@sold_albums[self.id] = Album.new(self.name, self.id)
+    end
+  end

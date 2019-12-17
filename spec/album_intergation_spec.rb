@@ -9,20 +9,10 @@ describe '#Album' do
     Album.clear()
   end
 
-  describe '#Album' do
+
     describe('.all') do
       it("returns an empty array when there are no albums") do
         expect(Album.all).to(eq([]))
-      end
-    end
-
-    describe('#save') do
-      it("saves an album") do
-        album = Album.new("Giant Steps", nil) # nil added as second argument
-        album.save()
-        album2 = Album.new("Blue", nil) # nil added as second argument
-        album2.save()
-        expect(Album.all).to(eq([album, album2]))
       end
     end
 
@@ -65,16 +55,6 @@ describe '#Album' do
       end
     end
 
-    describe('.sort') do
-      it("alphabetizes list of albums") do
-        album = Album.new("Giant Steps", nil)
-        album.save()
-        album2 = Album.new("Blue", nil)
-        album2.save()
-        expect(Album.sort).to(eq([album2, album]))
-      end
-    end
-
     describe('#update') do
       it("updates an album by id") do
         album = Album.new("Giant Steps", nil)
@@ -93,7 +73,15 @@ describe '#Album' do
         album.delete()
         expect(Album.all).to(eq([album2]))
       end
-
     end
+
+    describe('#sold') do
+      it("changes the status of the album") do
+        album = Album.new("Giant Steps", nil)
+        album.save()
+        album.sold()
+        expect(album.status).to(eq(false))
+      end
+    end
+
   end
-end
