@@ -1,13 +1,17 @@
-
 class Album
-  attr_accessor :name, :id, :name, :status
+
+  attr_accessor :name, :id, :year, :genre, :artist, :status
+
   @@albums = {}
   @@total_rows = 0
   @@sold_albums = {}
 
-  def initialize(name, id)
+  def initialize(name, id, year, genre, artist, status)
     @name = name
     @id = id || @@total_rows += 1
+    @year = year
+    @genre = genre
+    @artist = artist
     @status = "available"
   end
 
@@ -16,7 +20,7 @@ class Album
   end
 
   def save
-    @@albums[self.id] = Album.new(self.name, self.id)
+    @@albums[self.id] = Album.new(self.name, self.id, self.year, self.genre, self.artist, self.status)
   end
 
   def ==(album_to_compare)
@@ -36,9 +40,16 @@ class Album
     @@albums.values().select { |album| /#{name}/i.match? album.name }
   end
 
-  def update(name)
+  def update(name, year, genre, artist)
+    # @name = name
+    # @year = year
+    # @genre = genre
+    # @artist = artist
     self.name = name
-    @@albums[self.id] = Album.new(self.name, self.id)
+    self.year = year
+    self.genre = genre
+    self.artist = artist
+    @@albums[self.id] = Album.new(self.name, self.id, self.year, self.genre, self.artist, self.status)
   end
 
   def delete()
@@ -47,6 +58,11 @@ class Album
 
   def sold()
     self.status = "sold"
-    @@sold_albums[self.id] = Album.new(self.name, self.id)
-    end
+    @@sold_albums[self.id] = Album.new(self.name, self.id, self.year, self.genre, self.artist, self.status)
   end
+
+  def songs
+    Song.find_by_album(self.id)
+  end
+
+end
