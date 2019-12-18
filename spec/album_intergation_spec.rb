@@ -80,7 +80,7 @@ describe '#Album' do
         album = Album.new("Giant Steps", nil)
         album.save()
         album.sold()
-        expect(album.status).to(eq(false))
+        expect(album.status).to(eq("sold"))
       end
     end
 
