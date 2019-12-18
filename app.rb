@@ -74,7 +74,7 @@ get('/albums/:id') do
   erb(:album)
 end
 
-# his will take us to a page with a form for updating an album with an ID of #{params[:id]}.
+# This will take us to a page with a form for updating an album with an ID of #{params[:id]}.
 get('/albums/:id/edit') do
   @album = Album.find(params[:id].to_i())
   erb(:edit_album)
