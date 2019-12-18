@@ -1,14 +1,12 @@
-<h1>All-Sales-Vinyl</h1>
-
-<h3>Available Records</h3>
+<h3><center>Album Search</center></h3>
 <form action="/albums">
   <div class="form-group">
-    <label for="search">Search</label>
     <input id="search" name="search" class="form-control" type="text">
   </div>
-  <button type="submit" class="btn">Go!</button>
+  <button type="submit" class="btn btn-primary">Go!</button>
 </form>
 
+<h3><center>Available Records</center></h3>
 <% if @albums.any? %>
 <ul>
   <% @albums.each do |album| %>
